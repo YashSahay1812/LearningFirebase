@@ -15,6 +15,7 @@ function App() {
 
   // Handling user sign-up
   const handleSignUp = (event) => {
+    event.preventDefault(); //Don't miss this otherwise it will refresh the page before sending the request
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
         console.log(response.user);
@@ -24,16 +25,17 @@ function App() {
       })
   }
   
-  // Handling user sign-in
-  const handleSignIn = (event) => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then((response) => {
-        console.log(response.user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      })
-  }
+  // // Handling user sign-in
+  // const handleSignIn = (event) => {
+  //   event.preventDefault();
+  //   createUserWithEmailAndPassword(auth, data.email, data.password)
+  //     .then((response) => {
+  //       console.log(response.user);
+  //     })
+  //     .catch((error) => {
+  //       alert(error.message);
+  //     })
+  // }
 
 
   return (
@@ -42,7 +44,7 @@ function App() {
         <input placeholder="Enter email" name="email" type="email" onChange={(event) => handleInput(event)} />
         <input type="password" name="password" onChange={(event) => handleInput(event)} />
         <button onClick={(event) => handleSignUp(event)}>SignUp</button>
-        <button onClick={(event) => handleSignIn(event)}>SignIn</button>
+        {/* <button onClick={(event) => handleSignIn(event)}>SignIn</button> */}
       </form>
     </div>
   );
